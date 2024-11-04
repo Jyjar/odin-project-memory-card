@@ -1,0 +1,27 @@
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+
+.card,
+.card > h3,
+.card > img {
+    background-color: #FF0000;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-family: 'Pokemon Solid', sans-serif;
+    letter-spacing: 3px;
+    color: white;
+}
+
+.card:hover {
+    box-shadow: 1px 1px 20px yellow;
+}
+
+.card > img {
+    width: 150px;
+    height: auto;
+}
