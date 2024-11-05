@@ -43,12 +43,12 @@ function App() {
     };
 
     function addPressedPokémon(pokémon) {
-        console.log(pressedPokémons)
-        if(pressedPokémons.includes(pokémon)) {
-            if(score > bestScore) {
+        if (pressedPokémons.includes(pokémon)) {
+            if (score > bestScore) {
                 setBestScore(score);
             }
             setScore(0);
+            setPressedPokémons([]);
         } else {
             setPressedPokémons([...pressedPokémons, pokémon]);
             setScore(score + 1);
@@ -75,7 +75,7 @@ function App() {
                         any more than once!
                     </p>
                 </div>
-                <ScoreBoard score={score} bestScore={bestScore}/>
+                <ScoreBoard score={score} bestScore={bestScore} />
             </header>
             <div className="cards">
                 {pokémonPictures.map((picture, index) => (
