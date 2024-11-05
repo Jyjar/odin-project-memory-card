@@ -6,6 +6,9 @@ import { fetchPokémonPicture } from "./fetchPokémonPicture.js";
 
 function App() {
     const [pokémonPictures, setPokémonPictures] = useState([]);
+    const [score, setScore] = useState(0);
+    const [pressedPokémons, setPressedPokémons] = useState([]);
+    const [bestScore, setBestScore] = useState(0);
     const [pokémonNamesArray, setPokémonNamesArray] = useState([
         "ditto",
         "starly",
@@ -39,6 +42,19 @@ function App() {
         setPokémonNamesArray(shuffledArray);
     };
 
+    function addPressedPokémon(pokémon) {
+        console.log(pressedPokémons)
+        if(pressedPokémons.includes(pokémon)) {
+            if(score > bestScore) {
+                setBestScore(score);
+            }
+            setScore(0);
+        } else {
+            setPressedPokémons([...pressedPokémons, pokémon]);
+            setScore(score + 1);
+        }
+    }
+
     useEffect(() => {
         const fetchPictures = async () => {
             const pictures = await Promise.all(
@@ -59,12 +75,15 @@ function App() {
                         any more than once!
                     </p>
                 </div>
-                <ScoreBoard />
+                <ScoreBoard score={score} bestScore={bestScore}/>
             </header>
             <div className="cards">
                 {pokémonPictures.map((picture, index) => (
                     <Card
-                        onClick={shufflePokémonNames}
+                        onClick={() => {
+                            shufflePokémonNames();
+                            addPressedPokémon(pokémonNamesArray[index]);
+                        }}
                         key={index}
                         picture={picture}
                         name={

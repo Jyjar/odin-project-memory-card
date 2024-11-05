@@ -1,10 +1,10 @@
 import "../assets/Scoreboard.css";
 
-function ScoreBoard() {
+function ScoreBoard({ score, bestScore }) {
     return (
         <div className="right-header">
-            <p>Score: 0</p>
-            <p>Best score: 0</p>
+            <p>Score: {score}</p>
+            <p>Best score: {bestScore}</p>
         </div>
     );
 }
